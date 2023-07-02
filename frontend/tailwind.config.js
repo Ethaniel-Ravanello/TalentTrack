@@ -18,6 +18,7 @@ module.exports = {
       navbar: "#191E29",
       navbar2: "#2c3549",
       text: "#e1e8f5",
+      text2: "#000000",
       card: "#141a24",
       "card-accent": "#6f6f6f",
     },

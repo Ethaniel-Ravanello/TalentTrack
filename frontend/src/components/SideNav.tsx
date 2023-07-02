@@ -16,7 +16,7 @@ const SideNav = () => {
       </div>
       <div className="mt-18 text-xl flex hover:bg-navbar2 rounded-lg w-full pl-10 py-4">
         <BsFillPeopleFill className="mt-1 mr-2" />
-        <Link href={"/"}>Employee</Link>
+        <Link href={"/employees"}>Employee</Link>
       </div>
       <div className="mt-18 text-xl flex hover:bg-navbar2 rounded-lg w-full pl-10 py-4">
         <BsFillBuildingFill className="mt-1 mr-2" />
