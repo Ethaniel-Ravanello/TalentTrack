@@ -2,11 +2,13 @@ import React from "react";
 
 import Card from "@component/Card";
 
-export default function Employees() {
+export default function Engineering() {
   return (
     <main className=" h-full w-full py-10 px-24">
-      <h2 className="text-4xl font-bold">Employee List</h2>
-      <h3 className="mt-5">Add, Delete or Update Existing Exployees</h3>
+      <h2 className="text-4xl font-bold">
+        List Of People in Engineering Department
+      </h2>
+      <h3 className="mt-5">Add, Delete or Update Employees</h3>
 
       <div className="flex mt-10">
         <input

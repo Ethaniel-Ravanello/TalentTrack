@@ -1,11 +1,9 @@
-import Image from "next/image";
-
 import { BsFillPeopleFill, BsFillBuildingFill } from "react-icons/bs";
 import { AiFillProject } from "react-icons/ai";
 
 export default function Home() {
   return (
-    <main className={`h-full w-full p-10`}>
+    <main className={`h-full w-full py-10 px-24`}>
       <h2 className="text-4xl font-bold">Welcome Back, Ethaniel Ravanello</h2>
       <h3 className="mt-5">Welcome Back to your Dashboard</h3>
       <div className="flex gap-x-10">
