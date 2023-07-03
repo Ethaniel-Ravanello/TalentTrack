@@ -6,7 +6,7 @@ export default function Employees() {
   return (
     <main className=" h-full w-full py-10 px-24">
       <h2 className="text-4xl font-bold">Employee List</h2>
-      <h3 className="mt-5">Add, Delete or Update Existing Exployees</h3>
+      <h3 className="mt-5">Add, Delete or Update Exployees</h3>
 
       <div className="flex mt-10">
         <input
@@ -17,7 +17,7 @@ export default function Employees() {
       </div>
 
       <div className="mt-5">
-        <button className="bg-button hover:bg-buttonClick active:bg-button px-5 py-3 rounded-lg">
+        <button className="bg-navbar2 hover:bg-buttonClick active:bg-button px-5 py-3 rounded-lg">
           Add Employee
         </button>
 
