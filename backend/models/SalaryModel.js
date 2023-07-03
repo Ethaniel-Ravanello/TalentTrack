@@ -1,8 +1,8 @@
 import { DataTypes } from "sequelize";
 import db from "../config/Database.js";
 
-const Departments = db.define(
-  "departments",
+const Salaries = db.define(
+  "salaries",
   {
     employee_id: {
       type: DataTypes.INTEGER,
@@ -11,21 +11,27 @@ const Departments = db.define(
         key: "id",
       },
     },
-    department_name: {
+    salaty_type: {
       type: DataTypes.STRING,
+    },
+    salaty_amount: {
+      type: DataTypes.STRING,
+    },
+    salaty_payday: {
+      type: DataTypes.DATE,
     },
   },
   {
-    tableName: "departments",
+    tableName: "salaries",
   }
 );
 
 db.sync()
   .then(() => {
-    console.log("Department Table Connected");
+    console.log("Salary Table Connected");
   })
   .catch((err) => {
     console.log(err);
   });
 
-export default Departments;
+export default Salaries;

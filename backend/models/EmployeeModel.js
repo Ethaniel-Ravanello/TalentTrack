@@ -1,52 +1,58 @@
 import { Sequelize, DataTypes } from "sequelize";
 import db from "../config/Database.js";
 
-const Employee = db.define("employees", {
-  first_name: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  last_name: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  profile_picture: {
-    type: DataTypes.STRING,
-  },
-  department_id: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: "Department",
-      key: "id",
+const Employees = db.define(
+  "employees",
+  {
+    first_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    last_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    profile_picture: {
+      type: DataTypes.STRING,
+    },
+    department_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "Departments",
+        key: "id",
+      },
+    },
+    salary_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "salaries",
+        key: "id",
+      },
+    },
+    pto_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "ptos",
+        key: "id",
+      },
+    },
+    phone_number: {
+      type: DataTypes.STRING,
+    },
+    gender: {
+      type: DataTypes.STRING,
+    },
+    roles: {
+      type: DataTypes.STRING,
+    },
+    joined_date: {
+      type: DataTypes.DATE,
     },
   },
-  salary_id: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: "salary",
-      key: "id",
-    },
-  },
-  pto_id: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: "pto",
-      key: "id",
-    },
-  },
-  phone_number: {
-    type: DataTypes.STRING,
-  },
-  gender: {
-    type: DataTypes.STRING,
-  },
-  roles: {
-    type: DataTypes.STRING,
-  },
-  joined_date: {
-    type: DataTypes.DATE,
-  },
-});
+  {
+    tableName: "employees",
+  }
+);
 
 db.sync()
   .then(() => {
@@ -56,4 +62,4 @@ db.sync()
     console.log(err);
   });
 
-export default Employee;
+export default Employees;

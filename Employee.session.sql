@@ -3,18 +3,30 @@ CREATE TABLE Employees(
     id INT PRIMARY KEY AUTO_INCREMENT,
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
+    profile_picture VARCHAR(255),
     department_id INT,
     salary_id INT,
     pto_id INT,
     phone_number VARCHAR(255),
     gender VARCHAR(255),
+    roles VARCHAR(255),
+    joined_date VARCHAR(255);
 );
 
 -- @block
 INSERT INTO employees (first_name, last_name, profile_picture, department_id, salary_id, pto_id, phone_number, gender, roles, joined_date)
 VALUES 
-("Abdurrachman", "Kamil", NULL, 1, NULL, NULL, "0922718232", "Female", "Fullstack Developer", "2023-03-04" );
+("Abdurrachman", "Kamil", NULL, 1, NULL, NULL, "0922718232", "Male", "Fullstack Developer", "2023-03-04" ),
+("Ethaniel", "Ravanello", NULL, 1, NULL, NULL, "0812732929", "Male", "Frontend Developer", "2023-07-04" ),
+("Rendra", "Andriyansah", NULL, 1, NULL, NULL, "09182838237", "Male", "Frontend Developer", "2023-06-04" ),
+("Ghiyats", "Suffy", NULL, 1, NULL, NULL, "0283889932", "Male", "Frontend Developer", "2023-01-04" ),
+("Almira", "Mahsa", NULL, 1, NULL, NULL, "028328382", "Female", "Frontend Developer", "2023-04-04" ),
+("Fathan", "Tara", NULL, 1, NULL, NULL, "028328382", "Male", "VP", "2023-07-04" );
 
+
+-- @block
+ALTER TABLE employees
+ADD CONSTRAINT employees_ibfk_1 FOREIGN KEY (department_id) REFERENCES departments(id);
 
 -- @block
 SELECT * FROM employees
@@ -23,6 +35,10 @@ ON salary.employee_id = employees.id;
 
 -- @block
 SELECT * FROM employees
+
+-- @block
+ALTER TABLE salaries AUTO_INCREMENT = 1;
+
 
 
 -- @block
@@ -35,26 +51,33 @@ ADD joined_date DATE
 -- @block
 CREATE TABLE Department(
     id INT AUTO_INCREMENT,
-    employee_id INT NOT NULL,
     department_name VARCHAR(255),
     PRIMARY KEY (id),
-    FOREIGN KEY (employee_id) REFERENCES employees(id)
 );
 
 -- @block
-INSERT INTO department (employee_id, department_name)
+INSERT INTO departments (department_name)
 VALUES 
-(1, "Engineering"),
-(2, "Engineering")
+( "Engineering"),
+( "Design"),
+( "Marketing"),
+( "Sales"),
+( "Customer Service");
 
 -- @block
-SELECT * FROM department
+SELECT * FROM departments
 
+
+-- @block
+SELECT Departments.id, GROUP_CONCAT(Employees.id) AS employee_ids
+FROM Departments
+LEFT JOIN Employees ON Employees.department_id = Departments.id
+GROUP BY Departments.id;
 
 
 
 -- @block
-CREATE TABLE Salary(
+CREATE TABLE salaries(
     id INT PRIMARY KEY AUTO_INCREMENT,
     employee_id INT NOT NULL,
     salary_type VARCHAR(255),
@@ -65,16 +88,23 @@ CREATE TABLE Salary(
 );
 
 -- @block
-INSERT INTO salary (employee_id, salary_type, salary_amount, salary_payday)
+ALTER TABLE salaries
+ADD COLUMN employee_id INT NOT NULL,
+ADD FOREIGN KEY (employee_id) REFERENCES employees(id);
+
+-- @block
+INSERT INTO salaries (employee_id, salary_type, salary_amount, salary_payday)
 VALUES
 (1, "Gaji Pokok", "6.000.000", "2023-7-30"),
 (2, "Gaji Pokok", "10.000.000", "2023-7-30")
 
 -- @block
-SELECT * FROM salary
+UPDATE Employees
+JOIN salaries ON Employees.id = salaries.employee_id
+SET Employees.salary_id = salaries.id;
 
 -- @block
-DELETE FROM salary WHERE id = 2
+SELECT * FROM salaries
 
 -- @block
 ALTER TABLE salary
@@ -84,7 +114,7 @@ MODIFY COLUMN salary_payday DATE
 
 
 -- @block
-CREATE TABLE pto(
+CREATE TABLE ptos(
     id INT AUTO_INCREMENT,
     employee_id INT NOT NULL,
     pto_type VARCHAR(255),
@@ -95,22 +125,18 @@ CREATE TABLE pto(
 );
 
 -- @block
-INSERT INTO pto (employee_id, pto_type, starts_date, end_date)
+INSERT INTO ptos (employee_id, pto_type, starts_date, end_date)
 VALUES
 (1, 'Healing', '2023-07-01', '2023-07-10'),
 (2, 'Nikahan', '2023-07-02', '2023-07-15');
 
 -- @block
-SELECT * FROM pto
-
--- @block
-DELETE FROM pto WHERE id = 4
-
+SELECT * FROM ptos
 
 
 
 -- @block
-CREATE TABLE project(
+CREATE TABLE projects(
     id INT PRIMARY KEY AUTO_INCREMENT,
     project_name VARCHAR(255)
 );
@@ -122,7 +148,7 @@ VALUES
 ("Budgetmate")
 
 -- @block
-SELECT * FROM project
+SELECT * FROM projects
 
 -- @block
 ALTER TABLE project
@@ -154,10 +180,28 @@ INNER JOIN project ON project.id = employee_id
 WHERE project_id = 1
 
 -- @block
-SELECT * FROM employee_project
+SELECT * FROM employee_projects
 
 -- @block
 SELECT employees.first_name, employees.last_name, project.project_name
 FROM employees
 JOIN employee_Project ON employees.id = employee_Project.employee_id
 JOIN project ON employee_project.project_id = project.id;
+
+
+-- @block
+SELECT * FROM employee_projects;
+
+-- @block 
+SHOW CREATE TABLE employee_projects
+
+-- @block
+ALTER TABLE employee_projects
+DROP FOREIGN KEY employee_id,
+ADD CONSTRAINT employee_id
+FOREIGN KEY (employee_id) REFERENCES employees(id);
+
+-- @block
+ALTER TABLE employee_projects
+ADD CONSTRAINT fk_projects_id
+FOREIGN KEY (project_id) REFERENCES projects(id);
