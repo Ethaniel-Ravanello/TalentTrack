@@ -11,16 +11,10 @@ CREATE TABLE Employees(
 );
 
 -- @block
-INSERT INTO employees (first_name, last_name, department_id, salary_id, pto_id, phone_number, gender, marriage)
-VALUES (
-    "Ghiyas",
-    "Shufy",
-    1,
-    4,
-    7,
-    "0282392032",
-    "Male",
-)
+INSERT INTO employees (first_name, last_name, profile_picture, department_id, salary_id, pto_id, phone_number, gender, roles, joined_date)
+VALUES 
+("Abdurrachman", "Kamil", NULL, 1, NULL, NULL, "0922718232", "Female", "Fullstack Developer", "2023-03-04" );
+
 
 -- @block
 SELECT * FROM employees
@@ -33,7 +27,7 @@ SELECT * FROM employees
 
 -- @block
 ALTER TABLE Employees
-ADD roles VARCHAR(255)
+ADD joined_date DATE
 
 
 

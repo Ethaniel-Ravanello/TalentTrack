@@ -14,7 +14,7 @@ const Card = () => {
           width={50}
           height={50}
         />
-        <p className="pt-2 ml-5 text-lg">ESTHER HOWARD</p>
+        <p className="pt-2 ml-5 text-lg">Ryan Gosling</p>
       </div>
 
       <div className="w-fit h-fit bg-cardAccent rounded-md py-1 px-2">
