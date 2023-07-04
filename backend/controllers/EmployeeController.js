@@ -31,23 +31,28 @@ export const createEmployees = async (req, res) => {
   }
 };
 
-export const getEmployeesByDepartmentId = async (req, res) => {
+export const updateEmployees = async (req, res) => {
   try {
-    const employees = await Employees.findAll({
+    await Employees.update(req.body, {
       where: {
-        department_id: req.params.id,
+        id: req.params.id,
       },
     });
+    res.status(201).json({ msg: "Employee Updated" });
+  } catch (err) {
+    console.log(err);
+  }
+};
 
-    if (employees.length > 0) {
-      res.status(200).json(employees);
-    } else {
-      res
-        .status(404)
-        .json({ error: "No employees found for the department ID" });
-    }
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "An error occurred" });
+export const deleteEmployees = async (req, res) => {
+  try {
+    await Employees.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    res.status(201).json({ msg: "Employee Fired" });
+  } catch (err) {
+    console.log(err);
   }
 };

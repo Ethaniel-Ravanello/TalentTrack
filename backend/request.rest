@@ -1,22 +1,50 @@
 GET http://localhost:5000/employees
 
 ###
-GET http://localhost:5000/employees/8
+GET http://localhost:5000/employees/11
 
 ###
-GET http://localhost:5000/department/2
+PUT http://localhost:5000/employees/7
+Content-Type: application/json
+
+{
+    "first_name": "Micro",
+    "last_name" : "Man",
+    "phone_number": "0812739203",
+    "gender": "Male",
+    "roles" : "UI Developer",
+    "joined_date" : "2022-03-04"
+}
+
 
 ###
 POST http://localhost:5000/employees
 Content-Type: application/json
 
 {
-    "first_name": "John",
-    "last_name" : "Doe",
-    "profile_picture": "",
-    "department_id" : 1,
+    "first_name": "Frank Castle",
+    "last_name" : "Rakes",
     "phone_number": "01992039202",
     "gender": "Male",
-    "roles" : "Backend Developer",
-    "joined_date" : "2023-07-04"
+    "roles" : "UX Designer",
+    "joined_date" : "2022-07-04"
+}
+
+
+###
+DELETE http://localhost:5000/employees/8
+
+
+
+
+###
+GET http://localhost:5000/departments/2
+
+###
+PUT http://localhost:5000/departments/
+Content-Type: application/json
+
+{
+  "employeeId": 11,
+  "departmentId": 2
 }

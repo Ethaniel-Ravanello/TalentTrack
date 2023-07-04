@@ -17,12 +17,13 @@ const Ptos = db.define(
     starts_date: {
       type: DataTypes.DATE,
     },
-    end_type: {
+    end_date: {
       type: DataTypes.DATE,
     },
   },
   {
     tableName: "ptos",
+    timestamps: false,
   }
 );
 
