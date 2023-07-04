@@ -16,12 +16,13 @@ CREATE TABLE Employees(
 -- @block
 INSERT INTO employees (first_name, last_name, profile_picture, department_id, salary_id, pto_id, phone_number, gender, roles, joined_date)
 VALUES 
-("Abdurrachman", "Kamil", NULL, 1, NULL, NULL, "0922718232", "Male", "Fullstack Developer", "2023-03-04" ),
-("Ethaniel", "Ravanello", NULL, 1, NULL, NULL, "0812732929", "Male", "Frontend Developer", "2023-07-04" ),
-("Rendra", "Andriyansah", NULL, 1, NULL, NULL, "09182838237", "Male", "Frontend Developer", "2023-06-04" ),
-("Ghiyats", "Suffy", NULL, 1, NULL, NULL, "0283889932", "Male", "Frontend Developer", "2023-01-04" ),
-("Almira", "Mahsa", NULL, 1, NULL, NULL, "028328382", "Female", "Frontend Developer", "2023-04-04" ),
-("Fathan", "Tara", NULL, 1, NULL, NULL, "028328382", "Male", "VP", "2023-07-04" );
+-- ("Abdurrachman", "Kamil", NULL, 1, NULL, NULL, "0922718232", "Male", "Fullstack Developer", "2023-03-04" ),
+-- ("Ethaniel", "Ravanello", NULL, 1, NULL, NULL, "0812732929", "Male", "Frontend Developer", "2023-07-04" ),
+-- ("Rendra", "Andriyansah", NULL, 1, NULL, NULL, "09182838237", "Male", "Frontend Developer", "2023-06-04" ),
+-- ("Ghiyats", "Suffy", NULL, 1, NULL, NULL, "0283889932", "Male", "Frontend Developer", "2023-01-04" ),
+-- ("Almira", "Mahsa", NULL, 1, NULL, NULL, "028328382", "Female", "Frontend Developer", "2023-04-04" ),
+("Jane", "Doe", NULL, 2, NULL, NULL, "0192819232", "Male", "Ui/Ux", "2023-04-04" );
+
 
 
 -- @block
@@ -69,10 +70,15 @@ SELECT * FROM departments
 
 
 -- @block
-SELECT Departments.id, GROUP_CONCAT(Employees.id) AS employee_ids
+SELECT Departments.id, COUNT(Employees.id) AS employee_count
 FROM Departments
-LEFT JOIN Employees ON Employees.department_id = Departments.id
+LEFT JOIN Employees ON Departments.id = Employees.department_id
 GROUP BY Departments.id;
+
+-- @block
+ SELECT *
+      FROM Employees
+      WHERE department_id;
 
 
 
@@ -142,10 +148,10 @@ CREATE TABLE projects(
 );
 
 -- @block
-INSERT INTO project (project_name)
+INSERT INTO projects (project_name, project_image, project_description)
 VALUES
-("Ikuzports"),
-("Budgetmate")
+("Ikuzports", NULL, "A Ground breaking Web Application that can break throught the whole internet"),
+("Budgetmate", NULL, "A Ground breaking Web Application that can break throught the whole internet")
 
 -- @block
 SELECT * FROM projects
@@ -168,10 +174,11 @@ CREATE TABLE employee_project(
 );
 
 -- @block
-INSERT INTO employee_project (project_id, employee_id)
+INSERT INTO employee_projects (project_id, employee_id)
 VALUES
-(1, 1),
-(1, 2)
+(1, 2),
+(1, 3),
+(1, 4);
 
 -- @block
 SELECT project_id, employee_id, project_name, first_name

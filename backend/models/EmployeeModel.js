@@ -1,4 +1,4 @@
-import { Sequelize, DataTypes } from "sequelize";
+import { DataTypes } from "sequelize";
 import db from "../config/Database.js";
 
 const Employees = db.define(
@@ -6,11 +6,11 @@ const Employees = db.define(
   {
     first_name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      defaultValue: "",
     },
     last_name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      defaultValue: "",
     },
     profile_picture: {
       type: DataTypes.STRING,
@@ -51,6 +51,7 @@ const Employees = db.define(
   },
   {
     tableName: "employees",
+    timestamps: false,
   }
 );
 

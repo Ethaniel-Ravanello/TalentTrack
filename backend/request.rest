@@ -1,1 +1,22 @@
-GET http://localhost:5000/
+GET http://localhost:5000/employees
+
+###
+GET http://localhost:5000/employees/8
+
+###
+GET http://localhost:5000/department/2
+
+###
+POST http://localhost:5000/employees
+Content-Type: application/json
+
+{
+    "first_name": "John",
+    "last_name" : "Doe",
+    "profile_picture": "",
+    "department_id" : 1,
+    "phone_number": "01992039202",
+    "gender": "Male",
+    "roles" : "Backend Developer",
+    "joined_date" : "2023-07-04"
+}

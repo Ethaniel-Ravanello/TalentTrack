@@ -22,7 +22,7 @@ const Salaries = db.define(
     },
   },
   {
-    tableName: "salaries",
+    freezeTableName: true,
   }
 );
 
